@@ -1,7 +1,7 @@
 from app import app
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user
-from app.forms import SignUpForm, LoginForm
+from app.forms import SignUpForm, LoginForm, ContactForm
 from app.models import User
 #from app.api import RNA_dict, FRET_dict
 
@@ -17,9 +17,18 @@ def research():
 def julia():
     return render_template('julia.html')
 
-@app.route('/contact')
+@app.route('/contact', methods=["GET","POST"])
 def contact():
-    return render_template('contact.html')
+    form = ContactForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            print(f"Name:{form.name.data}, E-mail:{form.email.data}, Subject:{form.subject.data}, Message:{form.message.data}")
+            flash(f'Thank you, {form.name.data}. We will get back to you as soon as possible.','success')
+            return redirect(url_for('index'))
+        else:
+            return render_template('contact.html', form=form)
+    elif request.method == 'GET':
+        return render_template('contact.html', form=form)
 
 @app.route('/data')
 def data():
