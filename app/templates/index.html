@@ -3,5 +3,12 @@
 {% block title %} Home {% endblock %}
 
 {% block content %}
-    <h1>hello world, from index</h1>
+    <h1>Home</h1>
+    <p>Welcome to the Widom Lab</p>
+    <p>We are a physical chemistry research group at the University of Oregon in beautiful Eugene, OR. 
+        We use spectroscopy to study the folding mechanisms of RNA molecules whose structures are important for their biological functions. 
+        Check out the <a href="/research">research</a> tab for a more detailed description of our work in this very exciting field of study. 
+        If you’re interested in our work, please <a href="/contact"> get in touch</a>.</p>
+    <img src="{{url_for('static', filename='lab-photo.jpeg')}}" alt="Lab Photo">
+
 {% endblock %}

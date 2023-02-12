@@ -3,6 +3,7 @@ from flask import render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user
 from app.forms import SignUpForm, LoginForm
 from app.models import User
+#from app.api import RNA_dict, FRET_dict
 
 @app.route('/')
 def index():
@@ -31,6 +32,11 @@ def members():
 @app.route('/news')
 def news():
     return render_template('news.html')
+
+@app.route('/papers')
+def papers():
+    return render_template('papers.html', RNA_dict=RNA_dict, FRET_dict=FRET_dict)
+
 
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
