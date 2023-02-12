@@ -3,6 +3,59 @@
 {% block title %} Lab Members {% endblock %}
 
 {% block content %}
-<p>lab members</p>
+<h1>Lab Members</h1>
+<br>
+<br>
+
+<div class="card mb-3 mx-3 p-3 border-0" style="max-width: 800px;">
+    <h2>Graduate Students</h2>
+    <br>
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{url_for('static', filename='janson.jpeg')}}" class="img-fluid rounded" alt="Janson">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Janson Hoeher</h5>
+          <p class="card-text">Janson is a fifth-year graduate student from upstate New York. He’s been interested in Chemistry since high school. When he took Physical Chemistry at his undergraduate college, SUNY Plattsburgh, he knew it was for him. In his free time, he enjoys playing video games; in particular roguelikes and Pokemon Go. He also likes listening to music and watching anime.</p>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="card mb-3 mx-3 p-3 border-0" style="max-width: 800px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{url_for('static', filename='Nico.jpeg')}}" class="img-fluid rounded" alt="Nico">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Nico Nieves</h5>
+            <p class="card-text">Nico is a fourth-year graduate student from Omaha, Nebraska. Their fascination with energy, love for mathematics, and tendency to take things apart just to see how they go back together support their work in biophysical chemistry. When they’re not playing with lasers, Nico will likely be rock climbing, riding their bicycle, hiking, or otherwise actively enjoying the outdoors. </p>
+          </div>
+        </div>
+    </div> 
+</div>
+<div class="card mb-3 mx-3 p-3 border-0" style="max-width: 800px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{url_for('static', filename='kalika.jpeg')}}" class="img-fluid rounded" alt="Kalika">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Kalika Pai</h5>
+            <p class="card-text">Kalika is a third-year graduate student from New Mexico. She is interested in physical chemistry, particularly spectroscopy, and biochemistry. In her free time, she is likely to be keeping her dog entertained, or taking care of her small jungle of houseplants.</p>
+          </div>
+        </div>
+    </div>  
+</div>
+<div class="card mb-3 mx-3 p-3 border-0" style="max-width: 800px;">
+    <h2>Undergraduate Students</h2>
+    <ul>
+        <li>Nicholas Gustin (Junior, Biochemistry major)</li>
+        <li>Megan Adamec (Sophomore, Biochemistry major)</li>
+        <li>Christian Southwick (Junior, Biochemistry major)</li>
+        <li>Natalie Sande (Sophomore, Biochemistry major)</li>
+    </ul>
+</div>
 
 {% endblock %}

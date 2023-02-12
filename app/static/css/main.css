@@ -1,0 +1,41 @@
+#small-text {
+    font-size: small;
+}
+
+/* .no-margin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+} */
+
+#main-container {
+    background-color:white;
+    max-width: 930px;
+}
+
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    /* font-size: x-large; */
+}
+
+h2 {
+    font-family: 'Times New Roman', Times, serif;
+    /* font-size: large; */
+}
+
+h3 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 23px;
+}
+
+#mint {
+    color: rgb(189, 211, 189)
+}
+
+.card-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+}
+
+a {
+    text-decoration: none;
+}

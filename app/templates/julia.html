@@ -3,9 +3,40 @@
 {% block title %} Julia Widom {% endblock %}
 
 {% block content %}
-<h1>Julia Widom</h1>
-<p>Julia Widom grew up in Pittsburgh, PA and earned her B.A. in Chemistry from Northwestern University in 2009. She did her graduate work at the University of Oregon in the lab of Andy Marcus, earning her Ph.D. in 2013. Her research utilized fluorescence-detected multidimensional spectroscopy to study the conformations of porphyrins and nucleic acids. From 2014 to 2018, she worked as a postdoc in the lab of Nils Walter at the University of Michigan, where she used single-molecule fluorescence methods to study RNA folding. She returned to UO as a faculty member in the Physical Chemistry division in September, 2018. Her lab works at the interface of physical chemistry and molecular biology, using ultrafast and single-molecule spectroscopy to study RNA structure and dynamics. She is a member of the Oregon Center for Optical, Molecular and Quantum Science and an associate member of the Institute for Molecular Biology. In her free time, she enjoys rock climbing, hiking and baking fancy cakes.</p>
-<h2><a href="https://bpb-us-e1.wpmucdn.com/blogs.uoregon.edu/dist/8/17066/files/2019/04/Widom_CV_2021.pdf">Julia's CV</a></h2>
-<img src="{{url_for('static', filename='julia.jpeg')}}" alt="">
+<div class="card mb-3 mx-0 p-3 border-0" style="max-width: 1000px;">
+    <div class="row g-4 justify-content-evenly">
+        <div class="col-md-8 mx-0 px-0">
+            <div class="card-body mx-0 px-0">
+              <h1 class="pb-1 mx-0 px-0">Julia Widom</h1>
+              <p class="card-text mx-0 px-0">Julia Widom grew up in Pittsburgh, PA and earned her B.A. in Chemistry from Northwestern University in 2009. She did her graduate work at the University of Oregon in the lab of Andy Marcus, earning her Ph.D. in 2013. Her research utilized fluorescence-detected multidimensional spectroscopy to study the conformations of porphyrins and nucleic acids. From 2014 to 2018, she worked as a postdoc in the lab of Nils Walter at the University of Michigan, where she used single-molecule fluorescence methods to study RNA folding. She returned to UO as a faculty member in the Physical Chemistry division in September, 2018. Her lab works at the interface of physical chemistry and molecular biology, using ultrafast and single-molecule spectroscopy to study RNA structure and dynamics. She is a member of the Oregon Center for Optical, Molecular and Quantum Science and an associate member of the Institute for Molecular Biology. In her free time, she enjoys rock climbing, hiking and baking fancy cakes.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <img src="{{url_for('static', filename='julia.jpeg')}}" class="img-fluid rounded" alt="Julia">
+          <h3 class="pt-3"><a href="https://bpb-us-e1.wpmucdn.com/blogs.uoregon.edu/dist/8/17066/files/2019/04/Widom_CV_2021.pdf">Julia's CV</a></h3>
+        </div>
+    </div>  
+</div>
+<br>
+<div class="card mb-3 mx-0 p-0 border-0" style="max-width: 1000px;">
+    <h2 class="mx-0 px-0">Publications</h2>
+    <p>† These authors contributed equally to this work.</p>
+    <ol>
+        <li>Yadav, R.; <span style="font-weight:bold">Widom, J. R.</span>; Chauvier, A.; Walter, N. G. “An Anionic Ligand Snap-Locks a Long-Range Interaction in a Magnesium-Folded Riboswitch”. <span style="font-style:italic">Nat. Commun.</span>, <span style="font-weight:bold">2022</span>, 13, 207.</li>
+        <li><span style="font-weight:bold">Widom, J. R.</span>; Rai, V.; Rohlman, C. E.; Walter, N. G. “Versatile Transcription Control based on Reversible dCas9 Binding,”<span style="font-style:italic">RNA</span>, <span style="font-weight:bold">2019</span>, 72, 1457-1469.</li>
+        <li><span style="font-weight:bold">Widom, J. R.</span>; Nedialkov, Y. A.; Rai, V.; Hayes, R. L.; Brooks III, C. L.; Artsimovitch, I. A.; Walter, N. G. “Ligand Modulates Cross-Coupling between Riboswitch Folding and Transcriptional Pausing,”<span style="font-style:italic">Mol. Cell</span>, <span style="font-weight:bold">2018</span>, 72, 541-558.</li>
+        <li>
+            †Ray, S. R.; †<span style="font-weight:bold">Widom, J. R.</span>; Walter, N. G. “Life under the Microscope: Single-Molecule Fluorescence Highlights the RNA World,” Invited review for “RNA: From Single Molecule to Medicine” special issue at <span style="font-style:italic">Chem. Rev</span>, <strong>2018</strong>, 118, 4120-4155.
+        </li>
+        <li>
+            Kringle, L.; Sawaya, N.; <span style="font-weight:bold">Widom, J. R.</span>; Adams, C.; Raymer, M. G.; Aspuru-Guzik, A.; Marcus, A. H. “Temperature-Dependent Vibronic Coupling of Cy3 Dimers in Double-Stranded DNA,” Featured cover article in J.  <span style="font-style:italic">Chem. Phys.</span>, <strong>2018</strong>, 148, 085101.
+        </li>
+
+        
+        <span style="font-weight:bold">Widom, J. R.</span>
+        <span style="font-style:italic">Nat. Commun.</span>
+
+    </ol>
+</div>
 
 {% endblock %}
