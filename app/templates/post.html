@@ -11,6 +11,7 @@
                 <h5 class="card-title">{{ post.title }}</h5>
                 <p class="card-text">{{ post.body }}</p>
                 <p class="card-text"><small class="text-muted">{{ post.author.username }}</small></p>
+                <a href="{{ url_for('create_comment', post_id=post.id) }}" class="btn btn-primary">Comment</a>
                 {% if current_user == post.author %}
                     <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn btn-success">Edit Post</a>
                     <!-- Button trigger modal -->
@@ -41,5 +42,28 @@
         </div>
     </div>
 </div>
+<h2>Comments</h2>
+{% for comment in comments %}
+{%if comment.post_id == post.id%}
+    <div class="card my-3">
+        <div class="card-title m-3 border-1">
+        {{ comment.name }}
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>{{ comment.comment }}</p>
+                    <footer class="blockquote-footer">
+                    {{ comment.name }} on
+                    <cite title="Source Title">{{ comment.date_created.strftime('%B %d, %Y') }}</cite>
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('get_comment',comment_id=comment.id)}}">See More</a>
+                    {% endif %}
+                </footer>
+                
+            </blockquote>
+        </div>
+    </div>
+{%endif%}
+{%endfor%}
 
 {% endblock %}

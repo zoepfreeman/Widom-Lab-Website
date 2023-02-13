@@ -1,8 +1,8 @@
-from app import app
+from app import app, db
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
-from app.forms import SignUpForm, LoginForm, ContactForm, PostForm
-from app.models import User, Post
+from app.forms import SignUpForm, LoginForm, ContactForm, PostForm, CommentForm
+from app.models import User, Post, Comment
 #from app.api import RNA_dict, FRET_dict
 
 @app.route('/')
@@ -103,7 +103,7 @@ def create_post():
         # Create new post instance which will also add to db
         new_post = Post(title=title, body=body, user_id=current_user.id)
         flash(f"{new_post.title} has been listed", "success")
-        return redirect(url_for('index'))
+        return redirect(url_for('news'))
         
     return render_template('create.html', form=form)
 
@@ -114,7 +114,9 @@ def get_post(post_id):
     if not post:
         flash(f"A post with id {post_id} does not exist", "danger")
         return redirect(url_for('index'))
-    return render_template('post.html', post=post)
+    comments = Comment.query.all()
+    return render_template('post.html', post=post, comments=comments)
+    
 
 @app.route('/posts/<post_id>/edit', methods=["GET", "POST"])
 @login_required
@@ -155,3 +157,61 @@ def delete_post(post_id):
     post.delete()
     flash(f"{post.title} has been deleted", "info")
     return redirect(url_for('index'))
+
+@app.route('/posts/<post_id>/create-comment', methods=['GET', 'POST'])
+def create_comment(post_id):
+#def create_comment():
+    post = Post.query.get_or_404(post_id)
+    if not post:
+        flash(f"A post with id {post_id} does not exist", "danger")
+        return redirect(url_for('index'))
+    form = CommentForm()
+    if form.validate_on_submit():
+        # Get data from form
+        name = form.name.data
+        email = form.email.data
+        comment = form.comment.data
+        new_comment = Comment(name=name, email=email, comment=comment, post_id=post_id)
+        flash("Your comment has been added to the post", "success")
+        return redirect(url_for("get_post", post_id=post.id))
+        
+    return render_template('create_comment.html', form=form)
+
+# @app.route('/posts/<post_id>/<comment_id>/delete')
+@app.route('/comments/<comment_id>/delete')
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+    if not comment:
+        flash(f"A comment with id {comment_id} does not exist", "danger")
+        return redirect(url_for('index'))
+    # Make sure the post author is the current user
+    comment.delete()
+    flash(f"Comment has been deleted", "info")
+    return redirect(url_for('news'))
+
+@app.route('/comments/<int:comment_id>')
+def get_comment(comment_id):
+    # post = Post.query.get_or_404(post_id)
+    comment = Comment.query.get(comment_id)
+    if not comment:
+        flash(f"A comment with id {comment_id} does not exist", "danger")
+        return redirect(url_for('index'))
+    return render_template('comment.html', comment=comment)
+
+# @app.route("/post/<int:post_id>/comment", methods=["GET", "POST"])
+# def create_comment(post_id):
+#     post = Post.query.get_or_404(post_id)
+#     form = CommentForm()
+#     if request.method == 'POST': # this only gets executed when the form is submitted and not when the page loads
+#         if form.validate_on_submit():
+#             name = form.name.data
+#             email = form.email.data
+#             comment = form.comment.data
+#             new_comment = Comment(name=name, email=email, comment=comment)
+#             db.session.add(new_comment)
+#             db.session.commit()
+#             flash("Your comment has been added to the post", "success")
+#             return redirect(url_for("post", post_id=post.id))
+#     return render_template("create_post.html", title="Add Comment", 
+# form=form, post_id=post_id)

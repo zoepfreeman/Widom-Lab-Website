@@ -28,3 +28,9 @@ class PostForm(FlaskForm):
     title = StringField('Title', validators=[InputRequired()])
     body = TextAreaField('Body', validators=[InputRequired()])
     submit = SubmitField()
+
+class CommentForm(FlaskForm):
+    name = StringField("Name", validators=[InputRequired()])
+    email = StringField("Email", validators=[InputRequired()])
+    comment = TextAreaField("Comment", validators=[InputRequired()])
+    submit = SubmitField()

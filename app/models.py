@@ -42,7 +42,7 @@ class Post(db.Model):
     body = db.Column(db.String, nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # SQL Equivalent - FOREIGN KEY(user_id) REFERENCES user(id)
-
+    
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         db.session.add(self)
@@ -73,4 +73,35 @@ class Post(db.Model):
             'body': self.body,
             'date_created': self.date_created,
             'user_id': self.user_id,
+        }
+
+
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+    comment = db.Column(db.Text, nullable=False)
+    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id')) # SQL Equivalent - FOREIGN KEY(user_id) REFERENCES user(id)
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        db.session.add(self)
+        db.session.commit()
+
+    def __repr__(self):
+        return f"<Comment {self.id} | {self.name}>"
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'comment' : self.comment,
+            'date_created': self.date_created,
+            'post_id': self.post_id
         }

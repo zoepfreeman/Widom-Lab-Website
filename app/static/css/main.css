@@ -28,7 +28,7 @@ h3 {
 }
 
 #mint {
-    color: rgb(189, 211, 189)
+    color: rgb(212, 237, 212)
 }
 
 .card-title {
@@ -38,4 +38,28 @@ h3 {
 
 a {
     text-decoration: none;
+}
+
+#navbar {
+    background-color: rgb(1, 42, 18);
+    color:white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* .custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  } */
+  
+
+
+i:hover {
+    color:white;
+    -webkit-animation: spinAround 2s linear infinite;
+	-moz-animation: spinAround 2s linear infinite;
+	animation: spinAround 2s linear infinite;
+}
+
+.nav-link {
+    color:rgb(212, 237, 212);
+    font-family: 'Times New Roman', Times, serif;
 }

@@ -1,0 +1,18 @@
+{% extends "base.html"%}
+{% block content %}
+<form action="" class="bg-white rounded mt-3 p-5" method="post">
+    <h1 class="text-center">Add a Comment</h1>
+    {{ form.csrf_token }}
+
+    {{ form.name.label }}
+    {{ form.name(class='form-control', placeholder='Enter Your Name') }}
+
+    {{ form.email.label }}
+    {{ form.email(class='form-control', placeholder='Enter Your Email') }}
+
+    {{ form.comment.label }}
+    {{ form.comment(class='form-control', placeholder='Enter Your Comment') }}
+
+    {{ form.submit(class='btn btn-primary w-100 mt-3') }}
+</form>
+{% endblock content %}
