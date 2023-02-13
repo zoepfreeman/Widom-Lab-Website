@@ -3,9 +3,40 @@
 {% block title %} Julia Widom {% endblock %}
 
 {% block content %}
-<!-- 
-{% for i in range(5) %}
-    <li>{{RNA_dict[i]['title']}}</li>
-{%endfor%} -->
+
+<h1>The most recent papers published in our fields of interest</h1>
+<br>
+<br>
+<h2>RNA</h2>
+{% for i in range(2) %}
+    <div class="card p-3 mb-5 border-0">
+        <div class="card-title m-0">
+            <h3>{{RNA_dict[i]['title']}}</h3>
+        </div>
+        <div class="card-body px-5 pt-1">
+            <p class="my-1">{{RNA_dict[i]['authors']}}</p>
+            <p><span style="font-style:italic">{{RNA_dict[i]['journal']}}</span>, {{RNA_dict[i]['year']}}</p>
+            <p class="mb-1">{{RNA_dict[i]['abstract']}}</p>
+            <p class="mt-0"><a href="{{RNA_dict[i]['url']}}">Link to article</a></p>
+        </div>
+      </div>
+{%endfor%}
+<br>
+<br>
+<h2>FRET</h2>
+{% for i in range(2) %}
+    <div class="card p-3 mb-5 border-0">
+        <div class="card-title m-0">
+            <h3>{{RNA_dict[i]['title']}}</h3>
+        </div>
+        <div class="card-body px-5 pt-1">
+            <p class="my-1">{{RNA_dict[i]['authors']}}</p>
+            <p><span style="font-style:italic">{{RNA_dict[i]['journal']}}</span>, {{RNA_dict[i]['year']}}</p>
+            <p class="mb-1">{{RNA_dict[i]['abstract']}}</p>
+            <p class="mt-0"><a href="{{RNA_dict[i]['url']}}">Link to article</a></p>
+        </div>
+      </div>
+{%endfor%}
+
 
 {% endblock %}

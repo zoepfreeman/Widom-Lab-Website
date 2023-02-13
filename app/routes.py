@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from app.forms import SignUpForm, LoginForm, ContactForm, PostForm, CommentForm
 from app.models import User, Post, Comment
 from flask_mail import Mail, Message
-#from app.api import RNA_dict, FRET_dict
+from app.api import RNA_dict, FRET_dict
 
 
 
