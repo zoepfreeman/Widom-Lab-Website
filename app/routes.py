@@ -1,8 +1,8 @@
 from app import app
 from flask import render_template, redirect, url_for, flash, request
-from flask_login import login_user, logout_user
-from app.forms import SignUpForm, LoginForm, ContactForm
-from app.models import User
+from flask_login import login_user, logout_user, login_required, current_user
+from app.forms import SignUpForm, LoginForm, ContactForm, PostForm
+from app.models import User, Post
 #from app.api import RNA_dict, FRET_dict
 
 @app.route('/')
@@ -40,7 +40,8 @@ def members():
 
 @app.route('/news')
 def news():
-    return render_template('news.html')
+    posts = Post.query.all()
+    return render_template('news.html', posts=posts)
 
 @app.route('/papers')
 def papers():
@@ -89,4 +90,68 @@ def login():
 def logout():
     logout_user()
     flash("You have been logged out", "warning")
+    return redirect(url_for('index'))
+
+@app.route('/create-post', methods=['GET', 'POST'])
+@login_required
+def create_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        # Get data from form
+        title = form.title.data
+        body = form.body.data
+        # Create new post instance which will also add to db
+        new_post = Post(title=title, body=body, user_id=current_user.id)
+        flash(f"{new_post.title} has been listed", "success")
+        return redirect(url_for('index'))
+        
+    return render_template('create.html', form=form)
+
+@app.route('/posts/<int:post_id>')
+def get_post(post_id):
+    # post = Post.query.get_or_404(post_id)
+    post = Post.query.get(post_id)
+    if not post:
+        flash(f"A post with id {post_id} does not exist", "danger")
+        return redirect(url_for('index'))
+    return render_template('post.html', post=post)
+
+@app.route('/posts/<post_id>/edit', methods=["GET", "POST"])
+@login_required
+def edit_post(post_id):
+    post = Post.query.get(post_id)
+    if not post:
+        flash(f"A post with id {post_id} does not exist", "danger")
+        return redirect(url_for('index'))
+    # Make sure the post author is the current user
+    if post.author != current_user:
+        flash("You do not have permission to edit this post", "danger")
+        return redirect(url_for('index'))
+    form = PostForm()
+    if form.validate_on_submit():
+        # Get the form data
+        title = form.title.data
+        body = form.body.data
+        # update the post using the .update method
+        post.update(title=title, body=body)
+        flash(f"{post.title} has been updated!", "success")
+        return redirect(url_for('get_post', post_id=post.id))
+    if request.method == 'GET':
+        form.title.data = post.title
+        form.body.data = post.body
+    return render_template('edit_post.html', post=post, form=form)
+
+@app.route('/posts/<post_id>/delete')
+@login_required
+def delete_post(post_id):
+    post = Post.query.get(post_id)
+    if not post:
+        flash(f"A post with id {post_id} does not exist", "danger")
+        return redirect(url_for('index'))
+    # Make sure the post author is the current user
+    if post.author != current_user:
+        flash("You do not have permission to delete this post", "danger")
+        return redirect(url_for('index'))
+    post.delete()
+    flash(f"{post.title} has been deleted", "info")
     return redirect(url_for('index'))

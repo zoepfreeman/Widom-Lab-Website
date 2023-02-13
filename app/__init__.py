@@ -12,5 +12,8 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 login = LoginManager(app)
+login.login_view = 'login'
+login.login_message = 'You must be logged in to perform this action'
+login.login_message_category = 'danger'
 
-from . import routes
+from . import routes, models

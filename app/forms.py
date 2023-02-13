@@ -23,3 +23,8 @@ class ContactForm(FlaskForm):
     subject = StringField("Subject", validators=[InputRequired()])
     message = TextAreaField("Message", validators=[InputRequired()])
     submit = SubmitField("Send")
+
+class PostForm(FlaskForm):
+    title = StringField('Title', validators=[InputRequired()])
+    body = TextAreaField('Body', validators=[InputRequired()])
+    submit = SubmitField()
