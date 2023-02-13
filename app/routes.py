@@ -1,9 +1,12 @@
-from app import app, db
+from app import app, mail
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app.forms import SignUpForm, LoginForm, ContactForm, PostForm, CommentForm
 from app.models import User, Post, Comment
+from flask_mail import Mail, Message
 #from app.api import RNA_dict, FRET_dict
+
+
 
 @app.route('/')
 def index():
@@ -23,7 +26,10 @@ def contact():
     if request.method == 'POST':
         if form.validate_on_submit():
             print(f"Name:{form.name.data}, E-mail:{form.email.data}, Subject:{form.subject.data}, Message:{form.message.data}")
-            flash(f'Thank you, {form.name.data}. We will get back to you as soon as possible.','success')
+            flash(f'Thank you, {form.name.data}. We will get back to you as soon as possible.','success') 
+            msg = Message(form.subject.data, recipients=['zoefreeman13@gmail.com'])
+            msg.body = f'From: {form.name.data}, {form.email.data}, {form.subject.data}, {form.message.data}'
+            mail.send(msg)
             return redirect(url_for('index'))
         else:
             return render_template('contact.html', form=form)
