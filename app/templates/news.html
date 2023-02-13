@@ -5,27 +5,50 @@
 {% block content %}
 
 {% if current_user.is_authenticated %}
-    <h1 class="text-center">Welcome Back, {{ current_user.username }}!</h1>
-    <a class="nav-link" href="{{ url_for('create_post') }}">Post a News Story</a>
+    <h1 id="card-title" class="text-center">Welcome Back, {{ current_user.username }}!</h1>
+    <div class="mt-3" id="post-story">
+        <a id="button-text" href="{{ url_for('create_post') }}">Post a News Story</a>
+    </div>
+    <hr id="card-line" class="m-1 mt-5">
+    <hr id="card-line" class="m-1 my-0">
 {% endif %}
 
+<div>
+<div class="card my-3 py-3 border-0" style="max-width: 1000px;">
+    <div class="row g-4">
+        <p id="card-date" class="mb-0">August 23, 2022</p>
+        <h2 id="card-title" class="mt-0">Article about base-stacking heterogeneity is available!</h2>
+        <div class="col-md mx-0 px-0">           
+            <div class="card-body">
+              <p class="card-text">
+                Article about base-stacking heterogeneity is available!
+                An article is now available in Journal of Physical Chemistry Letters reporting work by graduate student Janson Hoeher. He used fluorescence-detected circular dichroism spectroscopy to study the distribution of stacked and unstacked structures adopted by short RNA sequences.
+                <a href="https://pubs.acs.org/doi/full/10.1021/acs.jpclett.2c01778">Check it out here.</a></p>
+            </div>
+        </div>
+        <div class="col-md">
+            <br>
+            <img src="{{url_for('static', filename='article_image.gif')}}" class="card-img-fluid" alt="RNA" height="200px">   
+        </div>
+    </div>
+    <a id="card-see" class="mt-4" href="#">See More</a>  
+    <hr id="card-line" class="mb-1 mt-4">
+    <hr id="card-line" class="my-0">
+</div>
+</div>
+
 {% for post in posts %}
-    <div class="card my-3">
-        <div class="card-title m-3 border-1">
+    <div class="card my-3 py-3 border-0" style="max-width: 1000px;">
+        <p id="card-date" class="mb-0">{{ post.date_created.strftime('%B %d, %Y') }}</p>
+        <h2 id="card-title" class="mt-0">
         {{ post.title }}
+        </h2>
+        <div class="card-body mx-0 px-0">
+            <p class="card-text">{{ post.body }}</p>
         </div>
-        <div class="card-body">
-        <blockquote class="blockquote mb-0">
-            <p>{{ post.body }}</p>
-                <footer class="blockquote-footer">
-            {% if current_user.is_authenticated %}
-                {{ post.author.username }} on
-            {% endif %}
-                <cite title="Source Title">{{ post.date_created.strftime('%B %d, %Y') }}</cite>
-            </footer>
-        </blockquote>
-        <a href="{{ url_for('get_post', post_id=post.id) }}" class="btn btn-primary mt-3">See More</a>
-        </div>
+        <a id="card-see" class="mt-4" href="{{ url_for('get_post', post_id=post.id) }}">See More</a>
+        <hr id="card-line" class="mb-1 mt-4">
+        <hr id="card-line" class="my-0">
     </div>
 {%endfor%}
 

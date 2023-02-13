@@ -4,7 +4,6 @@
 
 {% block content %}
 <div class="contact">
-    <h1>Contact us</h1>
     {% for message in form.name.errors %}
         <div class="flash">{{ message }}</div>
     {% endfor %}
@@ -17,35 +16,29 @@
     {% for message in form.message.errors %}
         <div class="flash">{{ message }}</div>
     {% endfor %}
-    
-    <form action="{{ url_for('contact') }}" method=post>
-        <div>
-            {{ form.csrf_token }}
-            <!-- name forms -->
-            <p>
-                {{ form.name.label }} <br>
-                {{ form.name(placeholder='Your name') }}
-            </p>
-            <!-- email forms -->
-            <p>
-                {{ form.email.label }} <br>
-                {{ form.email(placeholder='Your e-mail ...') }}
-            </p>
-            <!-- Subject of your request -->
-            <p>
-                {{ form.subject.label }}<br>
-                {{form.subject(placeholder='Your subject ...')}}
-            </p>
-            <!-- Content of your request -->
-            <p>
-                {{ form.message.label }}<br>
-                {{ form.message(placeholder='Write your request ...') }}
-            </p>
-            <!-- Submit button -->
-            <p>
-                {{ form.submit }}
-            </p>
-        </div>
+
+    <form action="{{ url_for('contact') }}" class="bg-white rounded mt-3 p-5" method=post>
+        <h1 class="text-center">Contact Us</h1>
+        {{ form.csrf_token }}
+        <p>
+            {{ form.name.label }} <br>
+            {{ form.name(class='form-control', placeholder='Your name') }}
+        </p>
+        <p>
+            {{ form.email.label }} <br>
+            {{ form.email(class='form-control', placeholder='Your e-mail ...') }}
+        </p>
+        <p>
+            {{ form.subject.label }}<br>
+            {{form.subject(class='form-control', placeholder='Your subject ...')}}
+        </p>
+        <p>
+            {{ form.message.label }}<br>
+            {{ form.message(class='form-control', placeholder='Write your request ...') }}
+        </p>
+        <p>
+            {{ form.submit(class='btn btn-primary w-100 mt-3') }}
+        </p>
     </form>
 </div>
 

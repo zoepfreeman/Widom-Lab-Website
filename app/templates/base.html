@@ -14,8 +14,8 @@
         <p id="mint" style="font-style:italic">RNA Structure and Dynamics</p>
     </div>
     {% include 'nav.html' %}
-    {% include 'alerts.html' %}
     <div class="container px-5 pb-5" id="main-container">
+        {% include 'alerts.html' %}
         <img src="{{url_for('static', filename='banner.png')}}" alt="RNA Banner" width="100%">
         {% block content %}
         {% endblock %}

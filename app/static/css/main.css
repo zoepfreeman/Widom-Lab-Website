@@ -2,10 +2,9 @@
     font-size: small;
 }
 
-/* .no-margin {
-    margin-top: 0px;
-    margin-bottom: 0px;
-} */
+#fancy-man {
+    font-family: 'Times New Roman', Times, serif;
+}
 
 #main-container {
     background-color:white;
@@ -14,12 +13,10 @@
 
 h1 {
     font-family: 'Times New Roman', Times, serif;
-    /* font-size: x-large; */
 }
 
 h2 {
     font-family: 'Times New Roman', Times, serif;
-    /* font-size: large; */
 }
 
 h3 {
@@ -62,3 +59,57 @@ i:hover {
     font-family: 'Times New Roman', Times, serif;
 }
 
+#paper-source {
+    font-size: x-small;
+}
+
+#paper-body {
+    font-size: small;
+}
+
+#paper-link {
+    font-size: small;
+    font-style: italic;
+}
+
+#card-line {
+    color:rgb(67, 84, 70);
+}
+
+#card-title {
+    color: rgb(1, 70, 1);
+}
+
+#card-date {
+    font-size: small;
+    color:rgb(158, 182, 162);
+}
+
+#card-see {
+    color: rgb(158, 182, 162);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#card-see:hover {
+    color: rgb(63, 99, 63);
+}
+
+#post-story {
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    margin: auto;
+    height: 40px;
+    background-image: linear-gradient(rgb(0, 93, 0),rgb(64, 64, 64));
+    width: fit-content;
+    padding: 7px 15px;
+    border-radius: 5px;
+}
+
+#post-story:hover {
+    box-shadow: 1px 1px 5px 0px rgb(39, 59, 37);
+    cursor: pointer;
+}
+
+#button-text {
+    color: white;
+}
